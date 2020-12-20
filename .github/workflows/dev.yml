@@ -18,9 +18,9 @@ jobs:
           # flutter-version: "1.22"
           channel: "stable"
       - run: flutter pub get
-      - run: flutter test
       - run: mkdir -p $FCI_BUILD_DIR/config
       - run: echo $APP_CONFIG | base64 --decode > $FCI_BUILD_DIR/config/app_config.json
+      - run: flutter test
       - run: flutter build appbundle -t lib/main_dev.dart
       # - uses: actions/upload-artifact@v1
       #   with:
