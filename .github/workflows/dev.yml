@@ -33,11 +33,11 @@ jobs:
       - uses: timheuer/base64-to-file@v1
         id: write_file
         with:
-          fileName: "config/app_config.json"
+          fileName: "${{ github.workspace }}/config/app_config.json"
           encodedString: ${{ secrets.APP_CONFIG }}
       - run: echo ${{ steps.write_file.outputs.filePath }}
       - run: pwd
-      - run: ${{ github.workspace }}
+      - run: echo ${{ github.workspace }}
       # - run: echo "${{ secrets.APP_CONFIG }}" |  base64 --decode > $HOME/config/app_config.json
       - run: ls
 
