@@ -8,6 +8,7 @@ on:
 jobs:
   base64:
     name: Create base 64 to app config
+    runs-on: ubuntu-latest
     steps:
       - uses: timheuer/base64-to-file@v1
         id: write_file
