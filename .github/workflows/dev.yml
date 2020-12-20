@@ -30,6 +30,8 @@ jobs:
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
+      - run: echo ${{ steps.write_file.outputs.filePath }}
+      - run: pwd
       # - run: echo "${{ secrets.APP_CONFIG }}" |  base64 --decode > $HOME/config/app_config.json
       - run: ls
 
