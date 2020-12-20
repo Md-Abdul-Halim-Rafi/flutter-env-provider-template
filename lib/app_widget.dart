@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_config/flutter_config.dart';
 
-import './config_reader.dart';
+import 'config_reader.dart';
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter CI with Codemagic',
-      theme: ThemeData(
-        primarySwatch: Provider.of<Color>(context),
-      ),
-      home: MyHomePage(title: 'Flutter CI with Codemagic'),
+      title: "FlavorConfig.of(context).appTitle",
+      // theme: ThemeData(
+      //   primarySwatch: Provider.of<Color>(context),
+      // ),
+      home: MyHomePage(title: "App title"),
     );
   }
 }
@@ -30,13 +30,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
+      // _counter += 1;
       _counter += ConfigReader.getIncreamentAmount();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    print(ConfigReader.getIncreamentAmount());
+    print(FlutterConfig.get('NAME_ID'));
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -52,10 +53,10 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.bodyText1,
             ),
-            Text(
-              'Revealed secret:\n${ConfigReader.getSecretKey()}',
-              textAlign: TextAlign.center,
-            ),
+            // Text(
+            //   'Revealed secret:\n${ConfigReader.getSecretKey()}',
+            //   textAlign: TextAlign.center,
+            // ),
           ],
         ),
       ),

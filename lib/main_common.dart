@@ -1,4 +1,4 @@
-import 'package:flavor_provider/app_widger.dart';
+import 'package:flavor_provider/app_widget.dart';
 import 'package:flavor_provider/config_reader.dart';
 import 'package:flavor_provider/environment.dart';
 import 'package:flutter/cupertino.dart';

@@ -55,12 +55,12 @@ jobs:
       - run: flutter clean
       - run: mkdir -p ${{ github.workspace }}/config
       - run: echo "${{ secrets.APP_CONFIG }}" |  base64 --decode > ${{ github.workspace }}/config/app_config.json
-      - run: flutter build appbundle -t lib/main_dev.dart
+      - run: flutter build apk -t lib/main_dev.dart
       - uses: actions/upload-artifact@v1
         with:
           name: release-apk
-          # path: build/app/outputs/apk/release/app-release.apk
-          path: build/app/bundle\release\app-release.aab
+          path: build\app\outputs\flutter-apk\app-release.apk
+          # path: build/app/bundle\release\app-release.aab
 
   # - name: Run Workflow
   #   id: write_file

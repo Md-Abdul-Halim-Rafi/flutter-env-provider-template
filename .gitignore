@@ -11,6 +11,7 @@
 
 # config
 config/
+.env
 
 # IntelliJ related
 *.iml
