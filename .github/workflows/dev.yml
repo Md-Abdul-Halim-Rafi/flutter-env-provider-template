@@ -17,8 +17,11 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: "stable"
+      - run: mkdir -p ${{ github.workspace }}/config
+      - run: echo "${{ secrets.APP_CONFIG }}" |  base64 --decode > ${{ github.workspace }}/config/app_config.json
+      - run: ls
       - run: flutter pub get
-      - run: flutter analyze
+      # - run: flutter analyze
       - run: flutter test
       # - uses: timheuer/base64-to-file@v1
       #   id: write_file
@@ -26,9 +29,6 @@ jobs:
       #     fileName: "${{ github.workspace }}/config/app_config.json"
       #     encodedString: ${{ secrets.APP_CONFIG }}
       # - run: echo ${{ steps.write_file.outputs.filePath }}
-      - run: ls ${{ github.workspace }}
-      - run: echo "${{ secrets.APP_CONFIG }}" |  base64 --decode > ${{ github.workspace }}/config/app_config.json
-      - run: ls
 
   # build_ios:
   #   name: Build Flutter (IOS)
