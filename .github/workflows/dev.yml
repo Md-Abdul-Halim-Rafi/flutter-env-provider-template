@@ -6,7 +6,8 @@ on:
       - dev
 
 jobs:
-  build:
+  flutter_test:
+    name: Run Flutter test and analyze
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,19 +16,21 @@ jobs:
           java-version: "12.x"
       - uses: subosito/flutter-action@v1
         with:
-          # flutter-version: "1.22"
           channel: "stable"
-      - name: Run Workflow
-        id: write_file
-        uses: timheuer/base64-to-file@v1
-        with:
-          fileName: "config/app_config.json"
-          encodedString: ${{ secrets.APP_CONFIG }}
       - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+      # - name: Run Workflow
+      #   id: write_file
+      #   uses: timheuer/base64-to-file@v1
+      #   with:
+      #     fileName: "config/app_config.json"
+      #     encodedString: ${{ secrets.APP_CONFIG }}
+      # - run: flutter pub get
       # - run: mkdir -p $FCI_BUILD_DIR/config
       # - run: echo $APP_CONFIG | base64 --decode > $FCI_BUILD_DIR/config/app_config.json
       # - run: flutter test
-      - run: flutter build appbundle -t lib/main_dev.dart
+      # - run: flutter build appbundle -t lib/main_dev.dart
       # - uses: actions/upload-artifact@v1
       #   with:
       #     name: release-apk
