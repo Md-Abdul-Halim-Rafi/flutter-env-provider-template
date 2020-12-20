@@ -16,7 +16,8 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           # flutter-version: "1.22"
-          channel: "stable"
+          # channel: "stable"
+          dart-version: "2.12"
       - run: flutter pub get
       - run: flutter test
       - run: mkdir -p $FCI_BUILD_DIR/config
