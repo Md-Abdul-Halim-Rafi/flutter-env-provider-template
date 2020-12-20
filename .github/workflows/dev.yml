@@ -20,7 +20,8 @@ jobs:
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
-      - run: echo ${{ secrets.APP_CONFIG }}
+      - run: echo "${{ secrets.APP_CONFIG }}" |  base64 --decode > $HOME/config/app_config.json
+      - run: ls
 
   # build_ios:
   #   name: Build Flutter (IOS)
