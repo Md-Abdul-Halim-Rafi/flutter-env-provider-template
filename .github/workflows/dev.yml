@@ -53,6 +53,8 @@ jobs:
           channel: "stable"
       - run: flutter pub get
       - run: flutter clean
+      - run: mkdir -p ${{ github.workspace }}/config
+      - run: echo "${{ secrets.APP_CONFIG }}" |  base64 --decode > ${{ github.workspace }}/config/app_config.json
       - run: flutter build appbundle -t lib/main_dev.dart
 
   # - name: Run Workflow
