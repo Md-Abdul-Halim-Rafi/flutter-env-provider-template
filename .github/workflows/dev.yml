@@ -7,12 +7,13 @@ on:
 
 jobs:
   base64:
-    name: Run Workflow
-    id: write_file
-    uses: timheuer/base64-to-file@v1
-    with:
-      fileName: "config/app_config.json"
-      encodedString: ${{ secrets.APP_CONFIG }}
+    name: Create base 64 to app config
+    steps:
+      - uses: timheuer/base64-to-file@v1
+        id: write_file
+        with:
+          fileName: "config/app_config.json"
+          encodedString: ${{ secrets.APP_CONFIG }}
 
   flutter_test:
     name: Run Flutter test and analyze
