@@ -6,6 +6,14 @@ on:
       - dev
 
 jobs:
+  base64:
+    name: Run Workflow
+    id: write_file
+    uses: timheuer/base64-to-file@v1
+    with:
+      fileName: "config/app_config.json"
+      encodedString: ${{ secrets.APP_CONFIG }}
+
   flutter_test:
     name: Run Flutter test and analyze
     runs-on: ubuntu-latest
@@ -20,7 +28,7 @@ jobs:
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
-      - run: echo "${{ secrets.APP_CONFIG }}" |  base64 --decode > $HOME/config/app_config.json
+      # - run: echo "${{ secrets.APP_CONFIG }}" |  base64 --decode > $HOME/config/app_config.json
       - run: ls
 
   # build_ios:
